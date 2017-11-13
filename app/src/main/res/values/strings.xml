@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SortAppJava</string>
+    <string name="random">Random</string>
+    <string name="ascending">Ascending</string>
+    <string name="descending">Descending</string>
+    <string name="initialization_type">Initialization Type:</string>
+    <string name="pick_the_value_for_n">Pick the value for n</string>
+    <string name="initialize_data_set">Initialize data set</string>
+    <string name="continue_string">Continue</string>
 </resources>
