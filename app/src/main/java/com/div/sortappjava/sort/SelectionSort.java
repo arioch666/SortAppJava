@@ -1,7 +1,8 @@
 package com.div.sortappjava.sort;
 
-import static com.div.sortappjava.utils.ComparableConstants.EQUAL;
-import static com.div.sortappjava.utils.ComparableConstants.LESS;
+
+import static com.div.sortappjava.utils.Constants.ComparableConstants.EQUAL;
+import static com.div.sortappjava.utils.Constants.ComparableConstants.LESS;
 
 /**
  * Created by arioch666 on 11/13/17.
