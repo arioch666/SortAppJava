@@ -15,7 +15,7 @@ import static com.div.sortappjava.utils.ComparableConstants.LESS;
 
 public class MergeSort implements Sorter {
 
-    Comparable[] values;
+    private Comparable[] values;
 
     private void mergeSort(int startIndex, int endIndex) {
         if (startIndex < endIndex) {

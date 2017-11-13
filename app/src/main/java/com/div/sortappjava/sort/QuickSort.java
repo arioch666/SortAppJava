@@ -13,7 +13,7 @@ import static com.div.sortappjava.utils.ComparableConstants.LESS;
  */
 
 public class QuickSort implements Sorter {
-    Comparable[] values;
+    private Comparable[] values;
 
     @Override
     public void sort(Comparable[] values) {
