@@ -10,6 +10,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
 
@@ -51,6 +53,8 @@ public class SortTest {
     @After
     public void checkResult() {
         sorter.sort(integersToSort);
+
+        System.out.println("Sorter: "+ sorter.getClass().getSimpleName() +" Sorted: " + Arrays.toString(integersToSort));
 
         for (int i = 0; i < length-1; i++) {
             if(integersToSort[i] > integersToSort[i+1]) {
