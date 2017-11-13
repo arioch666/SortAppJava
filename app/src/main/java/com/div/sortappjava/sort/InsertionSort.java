@@ -1,19 +1,18 @@
 package com.div.sortappjava.sort;
 
+import static com.div.sortappjava.utils.ComparableConstants.GREATER;
+
 /**
  * Created by arioch666 on 11/12/17.
  */
 
-public class InsertionSort<T extends Comparable<? super T>> implements Sorter {
+public class InsertionSort implements Sorter {
 
-    T[] values;
-
-    public InsertionSort(T[] values) {
-        this.values = values;
-    }
+    Comparable[] values;
 
     @Override
-    public void sort() {
+    public void sort(Comparable[] values) {
+        this.values = values;
         insertionSort(values.length-1);
     }
 
@@ -26,11 +25,11 @@ public class InsertionSort<T extends Comparable<? super T>> implements Sorter {
 
         insertionSort(sortLength - 1);
 
-        T last = values[sortLength];
+        Comparable last = values[sortLength];
         int traverse = sortLength-1;
 
         while (traverse >= 0
-                && values[traverse].compareTo(last) > 0) {
+                && values[traverse].compareTo(last) == GREATER) {
             values[traverse+1] = values[traverse--];
         }
         values[traverse+1] = last;
