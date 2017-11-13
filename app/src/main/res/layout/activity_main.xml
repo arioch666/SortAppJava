@@ -58,15 +58,15 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:text="@string/initialization_type"
         android:textAppearance="@android:style/TextAppearance.Material.Subhead"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nValueText" />
+        tools:layout_editor_absoluteY="211dp" />
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -90,18 +90,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/ascending"
             android:padding="8dp"
-            />
+            android:text="@string/ascending" />
 
         <RadioButton
             android:id="@+id/descending"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/descending"
             android:padding="8dp"
-            />
+            android:text="@string/descending" />
     </RadioGroup>
 
     <Button
@@ -119,5 +117,11 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="@drawable/button_drawable"
         />
+
+    <android.support.v7.widget.ViewStubCompat
+        android:id="@+id/algorithmsChooseView"
+        android:layout="@layout/algorithms_choose"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>
