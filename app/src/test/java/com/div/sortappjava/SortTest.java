@@ -1,5 +1,6 @@
 package com.div.sortappjava;
 
+import com.div.sortappjava.sort.InsertionSort;
 import com.div.sortappjava.sort.MergeSort;
 import com.div.sortappjava.sort.Sorter;
 
@@ -20,18 +21,35 @@ import static junit.framework.Assert.fail;
 public class SortTest {
 
     Integer[] integersToSort;
+    private int length;
 
     @Before
     public void setUp() {
-         integersToSort = new Integer[]{1,6,7,3,19,5};
+        integersToSort = new Integer[]{1,6,7,3,19,5};
+        length = integersToSort.length;
     }
 
     @Test
     public void testMergeSort() {
-        Sorter mergeSort = new MergeSort<>(integersToSort);
-        mergeSort.sort();
+        Sorter sorter = new MergeSort<>(integersToSort);
+        sorter.sort();
 
-        int length = integersToSort.length;
+
+
+        for (int i = 0; i < length-1; i++) {
+            if(integersToSort[i] > integersToSort[i+1]) {
+                fail("Not Sorted");
+            }
+        }
+
+        assertTrue(true);
+    }
+
+    @Test
+    public void testInsertionSort() {
+        Sorter sorter
+                  = new InsertionSort<>(integersToSort);
+        sorter.sort();
 
         for (int i = 0; i < length-1; i++) {
             if(integersToSort[i] > integersToSort[i+1]) {
