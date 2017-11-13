@@ -2,9 +2,9 @@ package com.div.sortappjava.sort;
 
 import java.util.Arrays;
 
-import static com.div.sortappjava.utils.ComparableConstants.EQUAL;
-import static com.div.sortappjava.utils.ComparableConstants.GREATER;
-import static com.div.sortappjava.utils.ComparableConstants.LESS;
+import static com.div.sortappjava.utils.Constants.ComparableConstants.EQUAL;
+import static com.div.sortappjava.utils.Constants.ComparableConstants.GREATER;
+import static com.div.sortappjava.utils.Constants.ComparableConstants.LESS;
 
 /**
  * Created by arioch666 on 11/12/17.

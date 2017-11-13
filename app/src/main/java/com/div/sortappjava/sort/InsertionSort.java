@@ -1,6 +1,6 @@
 package com.div.sortappjava.sort;
 
-import static com.div.sortappjava.utils.ComparableConstants.GREATER;
+import static com.div.sortappjava.utils.Constants.ComparableConstants.GREATER;
 
 /**
  * Created by arioch666 on 11/12/17.
