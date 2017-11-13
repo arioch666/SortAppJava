@@ -3,15 +3,14 @@ package com.div.sortappjava;
 import com.div.sortappjava.sort.InsertionSort;
 import com.div.sortappjava.sort.MergeSort;
 import com.div.sortappjava.sort.QuickSort;
+import com.div.sortappjava.sort.SelectionSort;
 import com.div.sortappjava.sort.Sorter;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
@@ -23,6 +22,7 @@ public class SortTest {
 
     Integer[] integersToSort;
     private int length;
+    private Sorter sorter;
 
     @Before
     public void setUp() {
@@ -32,38 +32,29 @@ public class SortTest {
 
     @Test
     public void testMergeSort() {
-        Sorter sorter = new MergeSort();
-        sorter.sort(integersToSort);
-
-        for (int i = 0; i < length-1; i++) {
-            if(integersToSort[i] > integersToSort[i+1]) {
-                fail("Not Sorted");
-            }
-        }
-
-        assertTrue(true);
+        sorter = new MergeSort();
     }
 
     @Test
     public void testInsertionSort() {
-
-        Sorter sorter = new InsertionSort();
-        sorter.sort(integersToSort);
-
-        for (int i = 0; i < length-1; i++) {
-            if(integersToSort[i] > integersToSort[i+1]) {
-                fail("Not Sorted");
-            }
-        }
-
-        assertTrue(true);
+        sorter = new InsertionSort();
     }
 
     @Test
     public void testQuickSort() {
+        sorter = new QuickSort();
+    }
 
-        Sorter sorter = new QuickSort();
+    @Test
+    public void testSelectionSort() {
+        sorter = new SelectionSort();
+    }
+
+    @After
+    public void checkResult() {
         sorter.sort(integersToSort);
+
+        System.out.println("Sorter: "+ sorter.getClass().getSimpleName() +" Sorted: " + Arrays.toString(integersToSort));
 
         for (int i = 0; i < length-1; i++) {
             if(integersToSort[i] > integersToSort[i+1]) {
