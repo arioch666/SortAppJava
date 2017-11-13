@@ -5,22 +5,17 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static com.div.sortappjava.utils.ComparableConstants.EQUAL;
+import static com.div.sortappjava.utils.ComparableConstants.GREATER;
+import static com.div.sortappjava.utils.ComparableConstants.LESS;
+
 /**
  * Created by arioch666 on 11/12/17.
  */
 
-public class MergeSort<T extends Comparable<? super T>> implements Sorter {
+public class MergeSort implements Sorter {
 
-    T[] values;
-
-    public MergeSort(T[] values) {
-        this.values = values;
-    }
-
-    @Override
-    public void sort() {
-        mergeSort(0, values.length);
-    }
+    Comparable[] values;
 
     private void mergeSort(int startIndex, int endIndex) {
         if (startIndex < endIndex) {
@@ -41,8 +36,8 @@ public class MergeSort<T extends Comparable<? super T>> implements Sorter {
 
         int mid = (endIndex+startIndex)/2;
         //+1 for the index is because it is exclusive and not inclusive
-        T[] copyLeft = Arrays.copyOfRange(values, startIndex, mid);
-        T[] copyRigth = Arrays.copyOfRange(values, mid, endIndex);
+        Comparable[] copyLeft = Arrays.copyOfRange(values, startIndex, mid);
+        Comparable[] copyRigth = Arrays.copyOfRange(values, mid, endIndex);
 
         int i = 0;
         int j = 0;
@@ -58,11 +53,11 @@ public class MergeSort<T extends Comparable<? super T>> implements Sorter {
             }
             switch (copyLeft[i].compareTo(copyRigth[j])) {
                 //Less than or equal
-                case -1:
-                case 0:
+                case LESS:
+                case EQUAL:
                     values[traverser++] = copyLeft[i++];
                     break;
-                case 1:
+                case GREATER:
                     values[traverser++] = copyRigth[j++];
                     break;
             }
@@ -76,5 +71,11 @@ public class MergeSort<T extends Comparable<? super T>> implements Sorter {
             values[traverser++] = copyRigth[j++];
         }
 
+    }
+
+    @Override
+    public void sort(Comparable[] values) {
+        this.values = values;
+        mergeSort(0, values.length);
     }
 }

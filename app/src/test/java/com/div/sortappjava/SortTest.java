@@ -2,6 +2,7 @@ package com.div.sortappjava;
 
 import com.div.sortappjava.sort.InsertionSort;
 import com.div.sortappjava.sort.MergeSort;
+import com.div.sortappjava.sort.QuickSort;
 import com.div.sortappjava.sort.Sorter;
 
 import org.junit.Before;
@@ -31,10 +32,8 @@ public class SortTest {
 
     @Test
     public void testMergeSort() {
-        Sorter sorter = new MergeSort<>(integersToSort);
-        sorter.sort();
-
-
+        Sorter sorter = new MergeSort();
+        sorter.sort(integersToSort);
 
         for (int i = 0; i < length-1; i++) {
             if(integersToSort[i] > integersToSort[i+1]) {
@@ -47,9 +46,9 @@ public class SortTest {
 
     @Test
     public void testInsertionSort() {
-        Sorter sorter
-                  = new InsertionSort<>(integersToSort);
-        sorter.sort();
+
+        Sorter sorter = new InsertionSort();
+        sorter.sort(integersToSort);
 
         for (int i = 0; i < length-1; i++) {
             if(integersToSort[i] > integersToSort[i+1]) {
@@ -60,5 +59,18 @@ public class SortTest {
         assertTrue(true);
     }
 
+    @Test
+    public void testQuickSort() {
 
+        Sorter sorter = new QuickSort();
+        sorter.sort(integersToSort);
+
+        for (int i = 0; i < length-1; i++) {
+            if(integersToSort[i] > integersToSort[i+1]) {
+                fail("Not Sorted");
+            }
+        }
+
+        assertTrue(true);
+    }
 }
