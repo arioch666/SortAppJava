@@ -1,4 +1,4 @@
-package com.div.sortappjava.ui.fragments;
+package com.div.sortappjava.ui.fragments.fragments;
 
 
 import android.arch.lifecycle.ViewModelProviders;
@@ -53,7 +53,7 @@ public class MainFragment extends Fragment implements MainFragmentView {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         seekBar = view.findViewById(R.id.seekBar);
         sizeTextView = view.findViewById(R.id.nValueText);
-        continueButton = view.findViewById(R.id.continueButton);
+        continueButton = view.findViewById(R.id.mainFragmentContinueButton);
         radioGroup = view.findViewById(R.id.radioGroup);
         sortTypeRecyclerView = view.findViewById(R.id.selectAlgorithmRecyclerView);
     }

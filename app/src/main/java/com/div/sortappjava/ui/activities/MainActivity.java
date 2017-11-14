@@ -6,7 +6,8 @@ import android.os.Bundle;
 
 import com.div.sortappjava.R;
 import com.div.sortappjava.ui.activities.interfaces.MainActivityView;
-import com.div.sortappjava.ui.fragments.MainFragment;
+import com.div.sortappjava.ui.fragments.fragments.MainFragment;
+import com.div.sortappjava.ui.fragments.fragments.SortTypeFragment;
 import com.div.sortappjava.ui.viewmodel.MainActivityViewModelImpl;
 import com.div.sortappjava.ui.viewmodel.interfaces.MainActivityViewModel;
 
@@ -48,9 +49,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
     @Override
     public void showSelectAlgorithmsFragment() {
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.fragment_container, SelectAlgorithmsFragment.newInstance())
-//                .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-//                .commit();
+        getSupportFragmentManager().beginTransaction()
+                .addToBackStack(SortTypeFragment.class.getCanonicalName())
+                .replace(R.id.fragment_container, SortTypeFragment.newInstance())
+                .commit();
     }
 }
