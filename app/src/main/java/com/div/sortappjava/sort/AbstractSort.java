@@ -13,8 +13,11 @@ package com.div.sortappjava.sort;
  *
  */
 abstract class AbstractSort implements Sorter {
+
     Comparable[] values;
     int length;
+
+    SortHighlighter sortHighlighter;
 
     /**
      *
@@ -26,5 +29,21 @@ abstract class AbstractSort implements Sorter {
         Comparable tempObject = values[index1];
         values[index1] = values[index2];
         values[index2] = tempObject;
+    }
+
+    public void setSortHighlighter(SortHighlighter sortHighlighter) {
+        this.sortHighlighter = sortHighlighter;
+    }
+
+    public void highlight(Integer... values) {
+        if (sortHighlighter != null) {
+            sortHighlighter.highlight(values);
+        }
+    }
+
+    public void highlightRange(int startIndex, int endIndex){
+        if (sortHighlighter != null) {
+            sortHighlighter.highlightRange(startIndex, endIndex);
+        }
     }
 }

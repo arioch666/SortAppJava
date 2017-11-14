@@ -51,6 +51,7 @@ public class InsertionSort extends AbstractSort {
         //than the currently selected one.
         while (traverse >= 0
                 && values[traverse].compareTo(last) == GREATER) {
+            highlight(traverse, 0);
             values[traverse+1] = values[traverse--];
         }
 

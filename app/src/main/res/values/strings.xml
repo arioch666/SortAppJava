@@ -8,4 +8,7 @@
     <string name="initialize_data_set">Initialize data set</string>
     <string name="continue_string">Continue</string>
     <string name="select_sorting_algorithms">Select sorting Algorithms:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
