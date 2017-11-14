@@ -1,7 +1,6 @@
 package com.div.sortappjava.datagenerator;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Random;
 
 import static com.div.sortappjava.utils.Constants.DataGenerator.ASCENDING;
