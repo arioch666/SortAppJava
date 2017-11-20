@@ -163,10 +163,11 @@ public class MainActivityViewModelImpl extends ViewModel implements MainActivity
 
                 //Building the datagenerator here, that way we do not keep on reinitializing the data.
                 dataGenerator = getDataGenerator();
-                if (dataGenerator.getSize() != getMainFragmentModel().getSize().getValue()) {
-                    dataGenerator.setSize(getMainFragmentModel().getSize().getValue());
-                    ((Runnable) () -> dataGenerator.generateData()).run();
-                }
+
+                dataGenerator.setSize(getMainFragmentModel().getSize().getValue());
+                dataGenerator.setInitializationType(getMainFragmentModel().getInitializationType());
+
+                ((Runnable) () -> dataGenerator.generateData()).run();
 
                 //transition to the next fragment.
                 mainActivityView.showSelectAlgorithmsFragment();

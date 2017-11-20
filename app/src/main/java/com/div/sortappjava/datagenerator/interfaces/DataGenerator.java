@@ -21,4 +21,6 @@ public interface DataGenerator<T extends Comparable<? super T>> {
 
     T getMaxValue();
 
+    void setInitializationType(int type);
+
 }
