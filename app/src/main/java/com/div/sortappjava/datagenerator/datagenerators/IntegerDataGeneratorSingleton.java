@@ -59,6 +59,7 @@ public class IntegerDataGeneratorSingleton<I extends Integer> implements DataGen
         return maxValue;
     }
 
+    @Override
     public void setInitializationType(int initializationType) {
         this.initializationType = initializationType;
     }
