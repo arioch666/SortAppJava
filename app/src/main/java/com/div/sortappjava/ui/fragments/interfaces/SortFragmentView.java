@@ -19,4 +19,6 @@ public interface SortFragmentView {
     FrameLayout getSortOverlay();
 
     Button getBeginSortButton();
+
+    void hideOverlay();
 }

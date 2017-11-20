@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.div.sortappjava.R;
 import com.div.sortappjava.ui.fragments.interfaces.SortFragmentView;
@@ -97,5 +98,10 @@ public class SortFragment extends Fragment implements SortFragmentView {
     @Override
     public Button getBeginSortButton() {
         return beginSortButton;
+    }
+
+    @Override
+    public void hideOverlay() {
+        getSortOverlay().setVisibility(View.GONE);
     }
 }

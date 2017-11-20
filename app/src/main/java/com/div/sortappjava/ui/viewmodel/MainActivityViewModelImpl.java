@@ -235,6 +235,9 @@ public class MainActivityViewModelImpl extends ViewModel implements MainActivity
             public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
                 CheckedTextView checkedTextView = (CheckedTextView) holder.itemView;
                 checkedTextView.setText(sortTypeEnums[position].getStringResId());
+
+                checkedTextView.setChecked(getSortTypeFragmentModel().getSortType().contains(sortTypeEnums[position].getValue()));
+
                 checkedTextView.setOnClickListener(view -> {
                     CheckedTextView checkedTextView1 = (CheckedTextView) view;
                     if (!checkedTextView1.isChecked()) {

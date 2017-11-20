@@ -1,9 +1,7 @@
 package com.div.sortappjava.ui.viewmodel;
 
 import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModel;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +12,6 @@ import com.div.sortappjava.R;
 import com.div.sortappjava.datagenerator.datagenerators.IntegerDataGeneratorSingleton;
 import com.div.sortappjava.datagenerator.interfaces.DataGenerator;
 import com.div.sortappjava.sort.InsertionSort;
-import com.div.sortappjava.sort.MergeSort;
 import com.div.sortappjava.sort.QuickSort;
 import com.div.sortappjava.sort.SelectionSort;
 import com.div.sortappjava.sort.Sorter;
@@ -28,7 +25,6 @@ import com.div.sortappjava.utils.enums.SortTypeEnum;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by arioch666 on 11/14/17.
@@ -113,7 +109,7 @@ public class SortFragmentViewModelImpl extends ViewModel implements SortFragment
             case SELECTION_SORT:
                 return new SelectionSort();
         }
-        return new MergeSort();
+        return new QuickSort();
     }
 
     @Override
@@ -176,8 +172,7 @@ public class SortFragmentViewModelImpl extends ViewModel implements SortFragment
     @Override
     public void bindBeginSortButton() {
         sortFragmentView.getBeginSortButton().setOnClickListener(view -> {
-            sortFragmentView.getSortOverlay().setVisibility(View.GONE);
-
+            sortFragmentView.hideOverlay();
             beginSort();
         });
     }
