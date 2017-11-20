@@ -25,4 +25,10 @@ public class Constants {
         public static final int INSERTION_SORT = 2;
         public static final int SELECTION_SORT = 3;
     }
+
+    public class Activities {
+
+        public static final String SORT_TYPE_LIST = "SORT_TYPE_LIST";
+
+    }
 }

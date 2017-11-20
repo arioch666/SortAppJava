@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 /**
  * Created by arioch666 on 11/13/17.
+ *
  */
-
 public interface MainFragmentView {
 
     SeekBar getSeekBar();

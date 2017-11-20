@@ -1,6 +1,7 @@
 package com.div.sortappjava.ui.model.interfaces;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by arioch666 on 11/14/17.
@@ -8,9 +9,9 @@ import java.util.Set;
 
 public interface SortTypeFragmentModel {
 
-    void addSortType(int sortType);
-    void removeSortType(int sortType);
-    Set<Integer> getSortType();
+    void addSortType(Integer sortType);
+    void removeSortType(Integer sortType);
+    ArrayList<Integer> getSortType();
 
 
 }

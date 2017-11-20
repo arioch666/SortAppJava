@@ -1,8 +1,12 @@
-package com.div.sortappjava.datagenerator;
+package com.div.sortappjava.datagenerator.datagenerators;
+
+import com.div.sortappjava.datagenerator.interfaces.DataGenerator;
 
 import java.util.Arrays;
 import java.util.Random;
 
+import static com.div.sortappjava.utils.Constants.ComparableConstants.GREATER;
+import static com.div.sortappjava.utils.Constants.ComparableConstants.LESS;
 import static com.div.sortappjava.utils.Constants.DataGenerator.ASCENDING;
 import static com.div.sortappjava.utils.Constants.DataGenerator.DESCENDING;
 import static com.div.sortappjava.utils.Constants.DataGenerator.RANDOM;
@@ -15,7 +19,7 @@ import static com.div.sortappjava.utils.Constants.DataGenerator.RANDOM;
  * type can be any of {@link com.div.sortappjava.utils.Constants.DataGenerator} values.
  *
  */
-public class IntegerDataGeneratorSingleton implements DataGeneratorInterface {
+public class IntegerDataGeneratorSingleton<I extends Integer> implements DataGenerator {
 
     //Size of the array
     private int size = 50;
@@ -23,11 +27,13 @@ public class IntegerDataGeneratorSingleton implements DataGeneratorInterface {
     //The way the data should be initialized.
     private int initializationType = RANDOM;
 
-    Comparable[] values;
+    I[] values;
 
-    private static final IntegerDataGeneratorSingleton ourInstance = new IntegerDataGeneratorSingleton();
+    I maxValue;
 
-    public static IntegerDataGeneratorSingleton getInstance() {
+    private static final IntegerDataGeneratorSingleton<Integer> ourInstance = new IntegerDataGeneratorSingleton<>();
+
+    public static IntegerDataGeneratorSingleton<Integer> getInstance() {
         return ourInstance;
     }
 
@@ -38,8 +44,19 @@ public class IntegerDataGeneratorSingleton implements DataGeneratorInterface {
      *
      * @param size is the size of the data set generated.
      */
+    @Override
     public void setSize(int size) {
         this.size = size;
+    }
+
+    @Override
+    public int getSize() {
+        return size;
+    }
+
+    @Override
+    public Comparable getMaxValue() {
+        return maxValue;
     }
 
     public void setInitializationType(int initializationType) {
@@ -48,7 +65,7 @@ public class IntegerDataGeneratorSingleton implements DataGeneratorInterface {
 
 
     /**
-     * comes from the interface {@link DataGeneratorInterface}
+     * comes from the interface {@link DataGenerator}
      */
     @Override
     public void generateData() {
@@ -66,7 +83,7 @@ public class IntegerDataGeneratorSingleton implements DataGeneratorInterface {
     }
 
     /**
-     * comes from the interface {@link DataGeneratorInterface}
+     * comes from the interface {@link DataGenerator}
      */
     @Override
     public Comparable[] getData() {
@@ -102,12 +119,19 @@ public class IntegerDataGeneratorSingleton implements DataGeneratorInterface {
      * uses the size to determine the number we use.
      */
     private void generateRandomData() {
+
         Random random = new Random();
 
+        maxValue = (I) Integer.valueOf(Integer.MIN_VALUE);
+
         int i = 0;
-        values = new Comparable[size];
+        values = (I[]) new Integer[size];
         while(i < size) {
-            values[i++] = random.nextInt(size*2);
+            values[i] = (I) Integer.valueOf(random.nextInt(99));
+            if (values[i].compareTo(maxValue) == GREATER) {
+                maxValue = values[i];
+            }
+            i++;
         }
     }
 

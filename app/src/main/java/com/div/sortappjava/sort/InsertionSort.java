@@ -1,5 +1,7 @@
 package com.div.sortappjava.sort;
 
+import com.div.sortappjava.utils.enums.SortTypeEnum;
+
 import static com.div.sortappjava.utils.Constants.ComparableConstants.GREATER;
 
 /**
@@ -11,6 +13,10 @@ import static com.div.sortappjava.utils.Constants.ComparableConstants.GREATER;
  */
 
 public class InsertionSort extends AbstractSort {
+
+    public InsertionSort() {
+        this.sortTypeEnum = SortTypeEnum.INSERTION_SORT;
+    }
 
     /**
      * From the {@link Sorter} that is implemented by {@link AbstractSort}

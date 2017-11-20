@@ -1,4 +1,4 @@
-package com.div.sortappjava.datagenerator;
+package com.div.sortappjava.datagenerator.interfaces;
 
 import static com.div.sortappjava.utils.Constants.DataGenerator.RANDOM;
 
@@ -9,10 +9,16 @@ import static com.div.sortappjava.utils.Constants.DataGenerator.RANDOM;
  * replacement of the Data Generator at any point without making any other changes.
  */
 
-public interface DataGeneratorInterface {
+public interface DataGenerator<T extends Comparable<? super T>> {
 
     void generateData();
 
-    Comparable[] getData();
+    T[] getData();
+
+    void setSize(int size);
+
+    int getSize();
+
+    T getMaxValue();
 
 }

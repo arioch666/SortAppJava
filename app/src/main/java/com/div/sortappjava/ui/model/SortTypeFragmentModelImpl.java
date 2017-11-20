@@ -1,8 +1,12 @@
 package com.div.sortappjava.ui.model;
 
+import android.arch.lifecycle.MutableLiveData;
+
 import com.div.sortappjava.ui.model.interfaces.SortTypeFragmentModel;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -10,20 +14,20 @@ import java.util.Set;
  */
 
 public class SortTypeFragmentModelImpl implements SortTypeFragmentModel {
-    Set<Integer> sortTypes = new HashSet<>();
+    ArrayList<Integer> sortTypes = new ArrayList<>();
 
     @Override
-    public void addSortType(int sortType) {
+    public void addSortType(Integer sortType) {
         sortTypes.add(sortType);
     }
 
     @Override
-    public void removeSortType(int sortType) {
+    public void removeSortType(Integer sortType) {
         sortTypes.remove(sortType);
     }
 
     @Override
-    public Set<Integer> getSortType() {
+    public ArrayList<Integer> getSortType() {
         return sortTypes;
     }
 }

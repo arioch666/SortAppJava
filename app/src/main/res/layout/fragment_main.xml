@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.div.sortappjava.ui.activities.MainActivity">
+    tools:context="com.div.sortappjava.ui.activities.activities.MainActivity">
 
     <SeekBar
         android:id="@+id/seekBar"
@@ -20,7 +20,7 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
 
-        android:max="1000"
+        android:max="200"
         />
 
     <TextView

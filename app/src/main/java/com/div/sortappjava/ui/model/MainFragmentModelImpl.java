@@ -22,12 +22,10 @@ public class MainFragmentModelImpl implements MainFragmentModel {
     MutableLiveData<Integer> size = new MutableLiveData<>();
     Integer initializationType;
 
-    Set<Integer> sortAlgorithmsToUse = new HashSet<>();
+    public MainFragmentModelImpl(Integer size, Integer initializationType) {
 
-    public MainFragmentModelImpl(MutableLiveData<Integer> size, Integer initializationType, Set<Integer> sortAlgorithmsToUse) {
-        this.size = size;
+        this.size.setValue(size);
         this.initializationType = initializationType;
-        this.sortAlgorithmsToUse = sortAlgorithmsToUse;
     }
 
     public MainFragmentModelImpl() {

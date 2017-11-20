@@ -1,5 +1,7 @@
 package com.div.sortappjava.sort;
 
+import com.div.sortappjava.utils.enums.SortTypeEnum;
+
 /**
  * Created by arioch666 on 11/13/17.
  *
@@ -19,6 +21,8 @@ abstract class AbstractSort implements Sorter {
 
     SortHighlighter sortHighlighter;
 
+    SortTypeEnum sortTypeEnum;
+
     /**
      *
      * Simple Swap function that will swap the values at the locations specified by:
@@ -29,8 +33,21 @@ abstract class AbstractSort implements Sorter {
         Comparable tempObject = values[index1];
         values[index1] = values[index2];
         values[index2] = tempObject;
+        highlight(index1,index2);
+
     }
 
+    void pause() {
+        try {
+            synchronized (this ) {
+                wait(100);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void setSortHighlighter(SortHighlighter sortHighlighter) {
         this.sortHighlighter = sortHighlighter;
     }
@@ -38,6 +55,7 @@ abstract class AbstractSort implements Sorter {
     public void highlight(Integer... values) {
         if (sortHighlighter != null) {
             sortHighlighter.highlight(values);
+            pause();
         }
     }
 
@@ -45,5 +63,16 @@ abstract class AbstractSort implements Sorter {
         if (sortHighlighter != null) {
             sortHighlighter.highlightRange(startIndex, endIndex);
         }
+    }
+
+    private void highlightSorted() {
+        if (sortHighlighter != null) {
+            sortHighlighter.highlightSorted();
+        }
+    }
+
+    @Override
+    public SortTypeEnum getSortTypeEnum() {
+        return sortTypeEnum;
     }
 }
