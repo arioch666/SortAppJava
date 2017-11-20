@@ -18,4 +18,7 @@
 
     <string name="select_algorithm_error">Please Select at least 1 algorithm</string>
     <string name="pick_the_sort_algorithms_to_compare">Pick the Sort Algorithms to Compare:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

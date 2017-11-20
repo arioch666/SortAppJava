@@ -1,7 +1,5 @@
 package com.div.sortappjava.sort;
 
-import java.util.List;
-
 /**
  * Created by arioch666 on 11/13/17.
  *
@@ -25,6 +23,6 @@ public interface SortHighlighter {
 
     void highlightRange(int startIndex, int endIndex);
 
-    void highlightSorted(int index);
+    void highlightSorted();
 
 }

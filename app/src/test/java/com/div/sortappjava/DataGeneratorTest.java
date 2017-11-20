@@ -1,11 +1,9 @@
 package com.div.sortappjava;
 
-import com.div.sortappjava.datagenerator.IntegerDataGeneratorSingleton;
+import com.div.sortappjava.datagenerator.datagenerators.IntegerDataGeneratorSingleton;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Arrays;
 
 import static com.div.sortappjava.utils.Constants.ComparableConstants.GREATER;
 import static com.div.sortappjava.utils.Constants.ComparableConstants.LESS;
@@ -21,7 +19,7 @@ import static junit.framework.Assert.fail;
 
 public class DataGeneratorTest {
 
-    private IntegerDataGeneratorSingleton integerDataGeneratorSingleton;
+    private IntegerDataGeneratorSingleton<Integer> integerDataGeneratorSingleton;
     private Comparable[] data;
 
     @Before

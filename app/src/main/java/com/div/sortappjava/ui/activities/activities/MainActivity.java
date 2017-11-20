@@ -1,6 +1,7 @@
-package com.div.sortappjava.ui.activities;
+package com.div.sortappjava.ui.activities.activities;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -40,11 +41,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
 
     @Override
-    public void showSortFragment() {
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.fragment_container, SortFragment.newInstance())
-//                .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-//                .commit();
+    public void showSortActivity() {
+        startActivity(SortActivity.newIntent(this, mainActivityViewModel.getSortTypeList()));
     }
 
     @Override
@@ -53,5 +51,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
                 .addToBackStack(SortTypeFragment.class.getCanonicalName())
                 .replace(R.id.fragment_container, SortTypeFragment.newInstance())
                 .commit();
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 }

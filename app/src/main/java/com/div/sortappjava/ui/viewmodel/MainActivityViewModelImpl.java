@@ -1,21 +1,17 @@
 package com.div.sortappjava.ui.viewmodel;
 
 import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.CheckedTextView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
 import com.div.sortappjava.R;
-import com.div.sortappjava.ui.SearchObject;
+import com.div.sortappjava.datagenerator.interfaces.DataGenerator;
+import com.div.sortappjava.datagenerator.datagenerators.IntegerDataGeneratorSingleton;
 import com.div.sortappjava.ui.activities.interfaces.MainActivityView;
 import com.div.sortappjava.ui.fragments.interfaces.MainFragmentView;
 import com.div.sortappjava.ui.fragments.interfaces.SortTypeFragmentView;
@@ -28,12 +24,20 @@ import com.div.sortappjava.ui.viewmodel.interfaces.MainFragmentViewModel;
 import com.div.sortappjava.ui.viewmodel.interfaces.SortTypeFragmentViewModel;
 import com.div.sortappjava.utils.enums.SortTypeEnum;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.div.sortappjava.utils.Constants.DataGenerator.ASCENDING;
 import static com.div.sortappjava.utils.Constants.DataGenerator.DESCENDING;
 import static com.div.sortappjava.utils.Constants.DataGenerator.RANDOM;
 
 /**
  * Created by arioch666 on 11/13/17.
+ *
+ * The activity view model holds the Data taht we want to persist across the activity, Will have
+ * new view model for the sort fragment because it will need its own lifecycle aware viewmodel in
+ * order to execute the Sorting.
+ *
  */
 
 public class MainActivityViewModelImpl extends ViewModel implements MainActivityViewModel, MainFragmentViewModel, SortTypeFragmentViewModel {
@@ -45,6 +49,8 @@ public class MainActivityViewModelImpl extends ViewModel implements MainActivity
     private SortTypeFragmentView sortTypeFragmentView;
     private SortTypeFragmentModel sortTypeFragmentModel;
 
+    private DataGenerator dataGenerator;
+
     /**
      * Main Activity
      *
@@ -52,6 +58,11 @@ public class MainActivityViewModelImpl extends ViewModel implements MainActivity
     @Override
     public void setMainActivityView(MainActivityView mainActivityView) {
         this.mainActivityView = mainActivityView;
+    }
+
+    @Override
+    public ArrayList<Integer> getSortTypeList() {
+        return getSortTypeFragmentModel().getSortType();
     }
 
     /**
@@ -73,6 +84,25 @@ public class MainActivityViewModelImpl extends ViewModel implements MainActivity
      */
     public void setMainFragmentModel(MainFragmentModel mainFragmentModel) {
         this.mainFragmentModel = mainFragmentModel;
+    }
+
+    /**
+     * Create a default Integer Data Generator if null
+     */
+    public DataGenerator getDataGenerator() {
+        if(dataGenerator == null) {
+            dataGenerator = IntegerDataGeneratorSingleton.getInstance();
+        }
+
+        return dataGenerator;
+    }
+
+    /**
+     * For Testing
+     * @param dataGenerator
+     */
+    public void setDataGenerator(DataGenerator dataGenerator) {
+        this.dataGenerator = dataGenerator;
     }
 
     @Override
@@ -130,7 +160,18 @@ public class MainActivityViewModelImpl extends ViewModel implements MainActivity
     public void bindContinueButton() {
         mainFragmentView.getContinueButton().setOnClickListener(view -> {
             if (getMainFragmentModel().getSize().getValue()>2) {
+
+                //Building the datagenerator here, that way we do not keep on reinitializing the data.
+                dataGenerator = getDataGenerator();
+                if (dataGenerator.getSize() != getMainFragmentModel().getSize().getValue()) {
+                    dataGenerator.setSize(getMainFragmentModel().getSize().getValue());
+                    ((Runnable) () -> dataGenerator.generateData()).run();
+                }
+
+                //transition to the next fragment.
                 mainActivityView.showSelectAlgorithmsFragment();
+
+
             } else {
                 mainFragmentView.showSizeError();
             }
@@ -150,8 +191,6 @@ public class MainActivityViewModelImpl extends ViewModel implements MainActivity
      * SortTypeFragment
      *
      */
-
-
     public SortTypeFragmentModel getSortTypeFragmentModel() {
         if (sortTypeFragmentModel == null) {
             sortTypeFragmentModel = new SortTypeFragmentModelImpl();
@@ -160,6 +199,10 @@ public class MainActivityViewModelImpl extends ViewModel implements MainActivity
         return sortTypeFragmentModel;
     }
 
+    /**
+     * For Testing.
+     * @param sortTypeFragmentModel
+     */
     public void setSortTypeFragmentModel(SortTypeFragmentModel sortTypeFragmentModel) {
         this.sortTypeFragmentModel = sortTypeFragmentModel;
     }
@@ -194,12 +237,12 @@ public class MainActivityViewModelImpl extends ViewModel implements MainActivity
                 checkedTextView.setText(sortTypeEnums[position].getStringResId());
                 checkedTextView.setOnClickListener(view -> {
                     CheckedTextView checkedTextView1 = (CheckedTextView) view;
-                    checkedTextView1.setChecked(!checkedTextView1.isChecked());
-                    if (checkedTextView1.isChecked()) {
+                    if (!checkedTextView1.isChecked()) {
                         getSortTypeFragmentModel().addSortType(sortTypeEnums[position].getValue());
                     } else {
-                        getSortTypeFragmentModel().addSortType(sortTypeEnums[position].getValue());
+                        getSortTypeFragmentModel().removeSortType(sortTypeEnums[position].getValue());
                     }
+                    checkedTextView1.setChecked(!checkedTextView1.isChecked());
                 });
             }
 
@@ -216,12 +259,16 @@ public class MainActivityViewModelImpl extends ViewModel implements MainActivity
     public void bindSortTypeContinueButton() {
         sortTypeFragmentView.getContinueButton().setOnClickListener((view) -> {
             if(getSortTypeFragmentModel().getSortType().size() > 0) {
-                mainActivityView.showSortFragment();
+                mainActivityView.showSortActivity();
             } else {
                 sortTypeFragmentView.showNoneSelectedError();
             }
         });
     }
+
+
+
+
 
 
 }
