@@ -1,7 +1,9 @@
 package com.div.sortappjava.sort;
 
-import static com.div.sortappjava.utils.ComparableConstants.EQUAL;
-import static com.div.sortappjava.utils.ComparableConstants.LESS;
+import com.div.sortappjava.utils.enums.SortTypeEnum;
+
+import static com.div.sortappjava.utils.Constants.ComparableConstants.EQUAL;
+import static com.div.sortappjava.utils.Constants.ComparableConstants.LESS;
 
 /**
  * Created by arioch666 on 11/12/17.
@@ -11,6 +13,10 @@ import static com.div.sortappjava.utils.ComparableConstants.LESS;
  */
 
 public class QuickSort extends AbstractSort {
+
+    public QuickSort() {
+        this.sortTypeEnum = SortTypeEnum.QUICK_SORT;
+    }
 
     /**
      * From the {@link Sorter} that is implemented by {@link AbstractSort}

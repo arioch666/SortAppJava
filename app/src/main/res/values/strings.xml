@@ -3,8 +3,22 @@
     <string name="random">Random</string>
     <string name="ascending">Ascending</string>
     <string name="descending">Descending</string>
+
     <string name="initialization_type">Initialization Type:</string>
     <string name="pick_the_value_for_n">Pick the value for n</string>
     <string name="initialize_data_set">Initialize data set</string>
     <string name="continue_string">Continue</string>
+    <string name="select_sorting_algorithms">Select sorting Algorithms:</string>
+
+    <string name="quick_sort">Quick Sort</string>
+    <string name="merge_sort">Merge Sort</string>
+    <string name="selection_sort">Selection Sort</string>
+    <string name="insertion_sort">Insertion Sort</string>
+
+
+    <string name="select_algorithm_error">Please Select at least 1 algorithm</string>
+    <string name="pick_the_sort_algorithms_to_compare">Pick the Sort Algorithms to Compare:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

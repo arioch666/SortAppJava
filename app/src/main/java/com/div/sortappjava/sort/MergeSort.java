@@ -1,10 +1,12 @@
 package com.div.sortappjava.sort;
 
+import com.div.sortappjava.utils.enums.SortTypeEnum;
+
 import java.util.Arrays;
 
-import static com.div.sortappjava.utils.ComparableConstants.EQUAL;
-import static com.div.sortappjava.utils.ComparableConstants.GREATER;
-import static com.div.sortappjava.utils.ComparableConstants.LESS;
+import static com.div.sortappjava.utils.Constants.ComparableConstants.EQUAL;
+import static com.div.sortappjava.utils.Constants.ComparableConstants.GREATER;
+import static com.div.sortappjava.utils.Constants.ComparableConstants.LESS;
 
 /**
  * Created by arioch666 on 11/12/17.
@@ -15,6 +17,10 @@ import static com.div.sortappjava.utils.ComparableConstants.LESS;
  */
 
 public class MergeSort extends AbstractSort {
+
+    public MergeSort() {
+//        sortTypeEnum = SortTypeEnum.MERGE_SORT;
+    }
 
     /**
      * From the {@link Sorter} that is implemented by {@link AbstractSort}
@@ -65,6 +71,7 @@ public class MergeSort extends AbstractSort {
         }
 
         int mid = (endIndex+startIndex)/2;
+
         Comparable[] copyLeft = Arrays.copyOfRange(values, startIndex, mid);
         Comparable[] copyRight = Arrays.copyOfRange(values, mid, endIndex);
 

@@ -1,6 +1,8 @@
 package com.div.sortappjava.sort;
 
-import static com.div.sortappjava.utils.ComparableConstants.GREATER;
+import com.div.sortappjava.utils.enums.SortTypeEnum;
+
+import static com.div.sortappjava.utils.Constants.ComparableConstants.GREATER;
 
 /**
  * Created by arioch666 on 11/12/17.
@@ -11,6 +13,10 @@ import static com.div.sortappjava.utils.ComparableConstants.GREATER;
  */
 
 public class InsertionSort extends AbstractSort {
+
+    public InsertionSort() {
+        this.sortTypeEnum = SortTypeEnum.INSERTION_SORT;
+    }
 
     /**
      * From the {@link Sorter} that is implemented by {@link AbstractSort}
@@ -51,6 +57,7 @@ public class InsertionSort extends AbstractSort {
         //than the currently selected one.
         while (traverse >= 0
                 && values[traverse].compareTo(last) == GREATER) {
+            highlight(traverse, 0);
             values[traverse+1] = values[traverse--];
         }
 
